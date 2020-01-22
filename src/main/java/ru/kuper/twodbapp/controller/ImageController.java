@@ -1,5 +1,7 @@
 package ru.kuper.twodbapp.controller;
 
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import java.io.OutputStream;
 
 @Controller
 @RequestMapping("/image")
+@Slf4j
 public class ImageController {
 
     private ImageRepo imageRepo;
@@ -53,8 +56,7 @@ public class ImageController {
         InputStream is = new ByteArrayInputStream(barray);
         OutputStream os = response.getOutputStream();
         IOUtils.copy(is,os);
-
+        log.info("Image rendered #"+id);
     }
-
 
 }
